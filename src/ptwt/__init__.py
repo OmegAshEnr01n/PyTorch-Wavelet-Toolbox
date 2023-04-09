@@ -1,5 +1,5 @@
 """Differentiable and gpu enabled fast wavelet transforms in PyTorch."""
-from .continuous_transform import cwt
+from .continuous_transform import cwt, _integrate_wavelet
 from .conv_transform import wavedec, waverec
 from .conv_transform_2 import wavedec2, waverec2
 from .conv_transform_3 import wavedec3, waverec3

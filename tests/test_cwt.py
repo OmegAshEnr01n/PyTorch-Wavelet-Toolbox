@@ -112,3 +112,6 @@ def test_nn_cwt(
     cwtmatr_pt, freqs_pt = cwt(data=sig, scales=scales, wavelet=ptwt_shannon)
     assert np.allclose(cwtmatr_pt.detach().cpu().numpy(), cwtmatr)
     assert np.allclose(freqs, freqs_pt)
+
+
+
