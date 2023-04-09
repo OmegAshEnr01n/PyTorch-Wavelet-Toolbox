@@ -90,11 +90,11 @@ def cwt(
 
     # convert int_psi, x to the same precision as the data
     # x = np.asarray(x, dtype=data.cpu().numpy().real.dtype)
-    print("int+pis =  ", int_psi)
+    # print("int+pis =  ", int_psi)
 
     size_scale0 = -1
     fft_data = None
-    print(scales.shape)
+    # print(scales.shape)
     out = []
     for scale in scales:
         step = x[1] - x[0]
@@ -114,18 +114,18 @@ def cwt(
         # - to be larger than the two signals length to avoid circular
         #   convolution
         size_scale = _next_fast_len(data.shape[-1] + len(int_psi_scale) - 1)
-        print("size_scale ", size_scale)
+        # print("size_scale ", size_scale)
         if size_scale != size_scale0:
             # Must recompute fft_data when the padding size changes.
             fft_data = fft(data, size_scale, dim=-1)
         size_scale0 = size_scale
         fft_wav = fft(int_psi_scale, size_scale, dim=-1)
         conv = ifft(fft_wav * fft_data, dim=-1)
-        print(torch.sum(conv.real)*1000)
+        # print(torch.sum(conv.real)*1000)
         conv = conv[..., : data.shape[-1] + len(int_psi_scale) - 1]
         # print("A1", conv.shape, data.shape, int_psi_scale.shape)
         coef = -np.sqrt(scale) * torch.diff(conv, dim=-1)
-        print(torch.sum(coef.real)*1000)
+        # print(torch.sum(coef.real)*1000)
         # transform axis is always -1
         d = (coef.shape[-1] - data.shape[-1]) / 2.0
         if d > 0:
